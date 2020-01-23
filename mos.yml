@@ -1,0 +1,29 @@
+author: ZenDIY
+description: Mongoose OS demo firmware for using HC-SR04 sensor
+# arch: PLATFORM
+version: 1.0
+manifest_version: 2017-05-18
+libs_version: ${mos.version}
+modules_version: ${mos.version}
+mongoose_os_version: ${mos.version}
+
+config_schema:
+  - ["app", "o", {title: "App settings"}]
+  - ["app.measure_interval", "i", 2000, {title: "How often (in milliseconds) to measure distance"}]
+  - ["app.hcsr04", "o", {title: "DPS sensor settings"}]
+  - ["app.hcsr04.trigger_pin", "i", 2, {title: "Trigger GPIO pin"}]
+  - ["app.hcsr04.echo_pin", "i", 4, {title: "Echo GPIO pin"}]
+# - ["debug.level", 3]
+
+sources:
+  - src
+tags:
+  - js
+filesystem:
+  - fs
+
+libs:
+  - origin: https://github.com/mongoose-os-libs/boards
+  - origin: https://github.com/mongoose-os-libs/rpc-service-config
+  - origin: https://github.com/mongoose-os-libs/provision
+  - name: hcsr04
