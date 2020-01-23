@@ -17,6 +17,7 @@ config_schema:
 
 sources:
   - src
+# - src_js
 tags:
   - js
 filesystem:
@@ -26,4 +27,4 @@ libs:
   - origin: https://github.com/mongoose-os-libs/boards
   - origin: https://github.com/mongoose-os-libs/rpc-service-config
   - origin: https://github.com/mongoose-os-libs/provision
-  - name: hcsr04
+  - origin: https://github.com/zendiy-mgos/hcsr04
