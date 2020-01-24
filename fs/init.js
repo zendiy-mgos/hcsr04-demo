@@ -9,5 +9,5 @@ let hcsr04 = HCSR04.create(Cfg.get('app.hcsr04.trigger_pin'),
 /* Set timer for reading distance */
 Timer.set(Cfg.get('app.measure_interval'), Timer.REPEAT, function(sensor) {
   let d = sensor.getDistance();
-  print('Distance: ', (isNaN(d) ? 'error reading distance' : d));
+  print('Distance:', (isNaN(d) ? 'error reading distance' : d));
 }, hcsr04);

@@ -9,15 +9,19 @@ mongoose_os_version: ${mos.version}
 
 config_schema:
   - ["app", "o", {title: "App settings"}]
-  - ["app.measure_interval", "i", 2000, {title: "How often (in milliseconds) to measure distance"}]
+  - ["app.measure_interval", "i", 4000, {title: "How often (in milliseconds) to measure distance"}]
   - ["app.hcsr04", "o", {title: "DPS sensor settings"}]
   - ["app.hcsr04.trigger_pin", "i", 2, {title: "Trigger GPIO pin"}]
   - ["app.hcsr04.echo_pin", "i", 4, {title: "Echo GPIO pin"}]
 # - ["debug.level", 3]
 
 sources:
-  - src
-# - src_js
+  # NOTE: comment the row below and exclude 'mjs' library
+  # in [libs] section to disable C/C++ demo.
+# - src
+  # NOTE: remove the comment below and include 'mjs' library
+  # in [libs] section to enable the JS demo.
+  - src_js
 tags:
   - js
 filesystem:
@@ -25,7 +29,11 @@ filesystem:
 
 libs:
   - origin: https://github.com/mongoose-os-libs/boards
+  - origin: https://github.com/mongoose-os-libs/rpc-uart
   - origin: https://github.com/mongoose-os-libs/rpc-service-config
   - origin: https://github.com/mongoose-os-libs/provision
 # - origin: https://github.com/zendiy-mgos/hcsr04
   - name: hcsr04
+  # NOTE: remove comment below and use the 'src_js' as sources folder
+  # to enable the JS demo (see ./fs/init.js).
+  - origin: https://github.com/mongoose-os-libs/mjs
