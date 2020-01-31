@@ -6,7 +6,7 @@
 static void my_timer_cb(void *arg) {
   struct mgos_hcsr04 *sensor = (struct mgos_hcsr04 *)arg;
   float distance = mgos_hcsr04_get_distance(sensor);
-  if (distance != NAN)
+  if (!isnan(distance))
     LOG(LL_INFO, ("Distance: %.2lf", distance));
   else
     LOG(LL_ERROR, ("Distance: error reading distance"));
