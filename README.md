@@ -26,3 +26,13 @@ Flash the firmware:
 ```bash
 $ mos flash --port <port_name>
 ```
+## Hardware
+### Compatible sensors
+You can use one of the following sensors and follow the wiring schema below.
+|Model||Notes|
+|--|--|--|
+|![hc-sr04 sensor](docs/hc-sr04.jpg)|HC-SR04|Mind to use a 3.3V compatible verison of the sensor.|
+|![rcw-0001 sensor](docs/rcw-0001-small.png)|RCW-0001|This sensor natively supports both 3.3V and 5V VCC.|
+### Wiring schema
+You can use a Wemos D1 mini follow the wiring schema below.
+![hc-sr04 wiring schema](docs/hcsr04-demo-sketch_bb.png)
