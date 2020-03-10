@@ -40,10 +40,10 @@ Used components:
 ![rcw-0001 wiring schema](docs/hcsr04-3V-demo-sketch_bb.png)
 **EXAMPLE 2**: this example shows how to wire a standard sensor that runs from 5V.
 
+DISCLAIMER: there has been some [debate on whether the ESP8266 is actually 5V tolerant on GPIO inputs](https://www.ba0sh1.com/blog/2016/08/03/is-esp8266-io-really-5v-tolerant/). I personally used this configuration without having any issue, but the decision to take the risk of burning the input pin is in your hands.
+
 Used components:
  - Wemos D1 mini board
  - HC-SR04 sensor
  - 5V DC power supply (via min-USB cable or via external power supply)
-
-DISCLAIMER: there has been some [debate on whether the ESP8266 is actually 5V tolerant on GPIO inputs](https://www.ba0sh1.com/blog/2016/08/03/is-esp8266-io-really-5v-tolerant/). I personally used this configuration without having any issue, but the decision to take the risk of burning the input pin is in your hands.
 ![hc-sr04 wiring schema](docs/hcsr04-5V-demo-sketch_bb.png)
