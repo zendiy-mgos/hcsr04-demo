@@ -28,15 +28,19 @@ $ mos flash --port <port_name>
 ```
 ## Hardware
 ### Compatible sensors
-You can use one of the following sensors.
-||Model|Notes|
-|--|--|--|
-|![hc-sr04 sensor](docs/hc-sr04.jpg)|HC-SR04|This sensor usually runs on 5V. If your MCU's GPIOs run on 3.3V (like ESP8266 GPIOs), **you must use the newer version** that natively supports 3.3V voltage. Otherwise, you must hack the circuit according this [anjoschu's post](https://www.instructables.com/id/Modify-Ultrasonic-Sensors-for-3-Volts-Logic-prepar/).|
-|![rcw-0001 sensor](docs/rcw-0001-small.png)|RCW-0001|This sensor natively supports both 3.3V and 5V voltages. It is fully equivalent to the HC-SR04 sensor.|
-### Wiring schema
-This example shows the wiring schema using:
+You can use one of the [hcsr04 library compatible sensors](https://github.com/zendiy-mgos/hcsr04/blob/master/README.md#compatible-sensors).
+### Wiring schemas
+**EXAMPLE 1**: this example shows how to wire a sensor that runs from 3.3V.
+PARTS LIST
  - Wemos D1 mini board
  - RCW-0001 sensor
- - 5V DC power supply (on-board min-USB or external)
+ - 5V DC power supply (via min-USB cable or via external power supply)
 
-![hc-sr04 wiring schema](docs/hcsr04-demo-sketch_bb.png)
+![rcw-0001 wiring schema](docs/hcsr04-3V-demo-sketch_bb.png)
+**EXAMPLE 2**: this example shows how to wire a standard sensor that runs from 5V.
+PARTS LIST
+ - Wemos D1 mini board
+ - HC-SR04 sensor
+ - 5V DC power supply (via min-USB cable or via external power supply)
+
+![hc-sr04 wiring schema](docs/hcsr04-5V-demo-sketch_bb.png)
