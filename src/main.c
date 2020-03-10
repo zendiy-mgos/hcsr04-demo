@@ -6,10 +6,22 @@
 static void my_timer_cb(void *arg) {
   struct mgos_hcsr04 *sensor = (struct mgos_hcsr04 *)arg;
   float distance = mgos_hcsr04_get_distance(sensor);
-  if (!isnan(distance))
-    LOG(LL_INFO, ("Distance: %.2lf", distance));
-  else
+  float distance_avg = mgos_hcsr04_get_distance_avg(sensor,
+    mgos_sys_config_get_app_hcsr04_avg_attempts(),
+    DEFAULT_AVG_ATTEMPTS_DELAY);
+  if (!isnan(distance) && !isnan(distance_avg)) {
+    LOG(LL_INFO, ("Distance (mm): %.2lf | avg %.2lf (discrepancy %.2lf)",
+      distance, distance_avg, (distance - distance_avg)));
+  }
+  else if (!isnan(distance)) {
+    LOG(LL_INFO, ("Distance (mm): %.2lf | avg FAIL", distance));
+  }
+  else if (!isnan(distance_avg)) {
+    LOG(LL_INFO, ("Distance (mm): FAIL | avg %.2lf", distance_avg));
+  }
+  else {
     LOG(LL_ERROR, ("Distance: error reading distance"));
+  }
 }
 
 enum mgos_app_init_result mgos_app_init(void) {
