@@ -3,24 +3,24 @@
 #include "mgos_sys_config.h"
 #include "mgos_hcsr04.h"
 
+
 static void my_timer_cb(void *arg) {
   struct mgos_hcsr04 *sensor = (struct mgos_hcsr04 *)arg;
-  float distance = mgos_hcsr04_get_distance(sensor);
-  float distance_avg = mgos_hcsr04_get_distance_avg(sensor,
-    mgos_sys_config_get_app_hcsr04_avg_attempts(),
-    DEFAULT_AVG_ATTEMPTS_DELAY);
-  if (!isnan(distance) && !isnan(distance_avg)) {
-    LOG(LL_INFO, ("Distance (mm): %.2lf | avg %.2lf (discrepancy %.2lf)",
-      distance, distance_avg, (distance - distance_avg)));
-  }
-  else if (!isnan(distance)) {
-    LOG(LL_INFO, ("Distance (mm): %.2lf | avg FAIL", distance));
-  }
-  else if (!isnan(distance_avg)) {
-    LOG(LL_INFO, ("Distance (mm): FAIL | avg %.2lf", distance_avg));
-  }
-  else {
-    LOG(LL_ERROR, ("Distance: error reading distance"));
+  
+  float dist = mgos_hcsr04_get_distance(sensor);
+  mgos_msleep(5);
+  float dist_avg = mgos_hcsr04_get_distance_avg(sensor,
+    mgos_sys_config_get_app_hcsr04_avg_attempts(), -1);
+
+  if (!isnan(dist) && !isnan(dist_avg)) {
+    LOG(LL_INFO, ("Distance (mm): %.2lf (avg. %.2lf | discrepancy %.2lf)",
+      dist, dist_avg, (dist - dist_avg)));
+  } else if (!isnan(dist)) {
+    LOG(LL_INFO, ("Distance (mm): %.2lf", dist));
+  } else if (!isnan(dist_avg)) {
+    LOG(LL_INFO, ("Distance (mm): avg. %.2lf", dist_avg));
+  } else {
+    LOG(LL_INFO, ("Distance (mm): error reading distance"));
   }
 }
 
